@@ -32,7 +32,7 @@ def envio_registro_F_T(df_comparacion, ejecutivo, respuesta_general_borrador, od
     #Path = f'''{carpeta}'''
     #st.code(Path, language="python")
 
-    ruta_carpeta="/mount/src/visado_con_i.a/Pag_web/Registros"
+    ruta_carpeta="Pag_web/Registros"
 
     # Verificar si la carpeta se creó exitosamente
     if os.path.exists(ruta_carpeta):
@@ -60,7 +60,7 @@ def envio_registro_F_T(df_comparacion, ejecutivo, respuesta_general_borrador, od
     API_NAME = "drive"
     API_VERSION = "v3"
     SCOPES = ["https://www.googleapis.com/auth/drive"]
-    ruta_carpeta="/mount/src/visado_con_i.a/Pag_web/Registros"
+    ruta_carpeta="Pag_web/Registros"
     ###Ejecutivo
 
     ### Rut
