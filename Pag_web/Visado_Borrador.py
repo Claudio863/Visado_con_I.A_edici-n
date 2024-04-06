@@ -25,7 +25,7 @@ import streamlit as st
 import os
 
 from PIL import Image
-path_origen="/mount/src/visado_con_i.a/Pag_web/"
+path_origen="Pag_web/"
 image_path =path_origen+ "Images/creditu_logo.jpg"
 image = Image.open(image_path)
 resized_image = image.resize((100, 100))  # Cambia el tamaño de la imagen a 300x300 píxeles
