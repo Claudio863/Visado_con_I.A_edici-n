@@ -1,0 +1,58 @@
+Puntos;Comparación;Dato Borrador;Dato ODE;dato_corr_borrador;dato_corr_ode;corrección_comparacion;Correccioneas_borrador
+Inmobiliaria Vendedora;**;**;**;False;False;False;Sin correcciones
+Nombre;NO IGUAL;INMOBILIARIA SUR ONCE SpA;Inmobiliaria Sur Once Spa;False;False;False;Sin correcciones
+Rut;IGUAL;76.751.429-8;76.751.429-8;True;False;False;Sin correcciones
+Deudor;**;**;**;True;False;False;Sin correcciones
+Nombre;IGUAL;DANIELLA NOEMI SOTO VALDES;Daniella Noemi Soto Valdes;True;False;False;Sin correcciones
+Cédula Nacional;IGUAL;19.855.718-8;19.855.718-8;False;False;False;Sin correcciones
+Nacionalidad;IGUAL;Chilena;Chilena;False;False;False;Sin correcciones
+Profesión;NO IGUAL;Auxiliar técnico;Auxiliar Tecnico;False;False;False;Sin correcciones
+Estado Civil;IGUAL;Soltera;Soltero(a);True;False;False;Sin correcciones
+Nombre del Proyecto;NO IGUAL;-;Conjunto Mirador De Lauquen;False;False;False;Sin correcciones
+Datos del Inmueble;**;**;**;False;False;False;Sin correcciones
+Número;IGUAL;206;206;False;False;False;Sin correcciones
+Torre;IGUAL;B;B;True;False;False;Sin correcciones
+Dirección;NO IGUAL;Calle Lauquen 341;Calle Lauquen 341;True;False;False;Sin correcciones
+Rol;NO IGUAL;1711-146;01711-00146;False;False;False;Sin correcciones
+Lote;NO IGUAL;;-;False;False;False;Sin correcciones
+Manzana;NO IGUAL;Piso 2;Piso 2;False;False;False;Sin correcciones
+Datos del Crédito;**;**;**;False;False;False;Sin correcciones
+Precio venta;NO IGUAL;2.200 UF;2.200 UF;False;False;False;Sin correcciones
+Monto líquido;IGUAL;1.695 UF;1.695 UF;False;False;False;Sin correcciones
+Monto bruto;IGUAL;1.695 UF;1.695 UF;False;False;False;Sin correcciones
+Gastos operacionales del préstamo;IGUAL;0 UF;0 UF;False;False;False;Sin correcciones
+Cuota contado;NO IGUAL;0 UF;0 UF;False;False;False;Sin correcciones
+Precio venta estacionamiento;NO IGUAL;;-;False;False;False;Sin correcciones
+Precio tasación estacionamiento;NO IGUAL;;-;False;False;False;Sin correcciones
+Precio venta bodega;NO IGUAL;;-;False;False;False;Sin correcciones
+Precio tasación bodega;NO IGUAL;;-;False;False;False;Sin correcciones
+Plazo del crédito;NO IGUAL;360 meses (30 años);30 años;False;False;False;Sin correcciones
+Meses de gracia;NO IGUAL;No se mencionan meses de gracia en el texto proporcionado.;5;False;False;False;Sin correcciones
+Cuota dividendo sin seguro - Cuota inicial;NO IGUAL;12,18 UF;12,18 UF;False;False;False;Sin correcciones
+Cuota dividendo sin seguro - Cuota final;NO IGUAL;13,20 UF;12,84 UF;False;False;False;Sin correcciones
+Tasa del crédito;NO IGUAL;7,68% anual;7,68%;False;False;False;Sin correcciones
+Desglose Subsidio;**;**;**;False;False;False;Sin correcciones
+Tipo de subsidio;NO IGUAL;DS19;DS19;False;False;False;Sin correcciones
+Subsidio base;IGUAL;125 UF;125;False;False;False;Sin correcciones
+Subsidio integración;IGUAL;200 UF;200;False;False;False;Sin correcciones
+Subsidio captación;IGUAL;100 UF;100;False;False;False;Sin correcciones
+Monto total subsidio;IGUAL;425 UF;425;False;False;False;Sin correcciones
+Ahorro previo;NO IGUAL;0 UF;80;False;False;False;Sin correcciones
+Mandatario;**;**;**;False;False;False;Sin correcciones
+Nombre;NO IGUAL;MIGUEL ANDRES SOTO VALDES;Miguel Andres Soto Valdes;False;False;False;Sin correcciones
+Rut;IGUAL;16.988.358-0;16.988.358-0;False;False;False;Sin correcciones
+Estado Civil;NO IGUAL;Casado;Casado, Sociedad Conyugal;False;False;False;Sin correcciones
+Profesión;NO IGUAL;Operador planta industrial;Operador De Planta Industrial;False;False;False;Sin correcciones
+Dirección;NO IGUAL;Avenida Las Quintas número 240, comuna de Los Ángeles, Región del Biobío;AVENIDA LAS QUINTAS 240, Los Ángeles, Biobío, Región del Biobío;False;False;False;Sin correcciones
+Codeudor;**;**;**;False;False;False;Sin correcciones
+Nombre;NO IGUAL;;Miguel Andres Soto Valdes;False;False;False;Sin correcciones
+Rut;NO IGUAL;;16.988.358-0;False;False;False;Sin correcciones
+Estado Civil;NO IGUAL;;Casado, Sociedad Conyugal;False;False;False;Sin correcciones
+Profesión;NO IGUAL;;Operador De Planta Industrial;False;False;False;Sin correcciones
+Dirección;NO IGUAL;;AVENIDA LAS QUINTAS 240, Los Ángeles, Biobío, Región del Biobío;False;False;False;Sin correcciones
+Gastos operacionales del préstamo;**;**;**;False;False;False;Sin correcciones
+Tasación;IGUAL;3.00 UF;3,00 UF;False;False;False;Sin correcciones
+Estudio de Títulos;IGUAL;2.50 UF;2,50 UF;False;False;False;Sin correcciones
+Escrituración;IGUAL;3.20 UF;3,20 UF;False;False;False;Sin correcciones
+Notaría;NO IGUAL;3.00 UF;3,00 UF;False;False;False;Sin correcciones
+Impuesto;NO IGUAL;0 UF;0,00 UF;False;False;False;Sin correcciones

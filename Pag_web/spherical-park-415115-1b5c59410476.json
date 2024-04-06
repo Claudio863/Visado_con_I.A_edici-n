@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "spherical-park-415115",
+  "private_key_id": "1b5c59410476fd0f1d036658ca51887e50e0ffc0",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCpGMDXMKXbkk9d\nHy3lMYuxgyLREd5UdECdxZvHoFB/GileZTTtCQW9J855D1POxM0r8x9IyhH9JnCu\n83RLJ9FQIYPrCPXnUc+Se547jKNVyqHaMpbwEApgfOHV+fDW7D1kyZWSKbBEIukX\nuV9+9U6hzEy0eIgKPnx2++3Wm9gv5PUaX+m8E0f0xOGh6+6tR8ti7GQdwvuG627E\n6IPJtq+Dm93uboPuAlj301wfuo1dnWKaOvcFSwNN34nYL4x4ZVE4ZkcIf60hF/DQ\nLF9atAN5zAhtwF3AcuNHDQqDtKKsYVpl0xiN6cOE6I8UNNNRGzrLiJzm2rKUBHqi\nJZfRgPeVAgMBAAECggEABk2o6pyioiO7F6KQ6GlHZs+XnamH2ygWPItgOjnMpmBI\nSH+HUIq0jw+Lz9F1c1C8wTWn5eO6dfBX5P2oSSDr2YvWSg2kdQIEtdYr2NZuREVw\ncRzPqZU/fcdJ99sAUlKuGzK0g6VQL8oJXFwJpkbornlaJqQTliYsJ5dOj2Bx158m\nzNBXm7f66HX6k8nWs8Jh6fMw46k6YGjhwR/fXQMO8tBXMVpCC7xuZP9Ciaxg0y1B\nRrrIv/CY58WqP+lnjwOgBHG8AoAoyrce2LiOJYKnfhzMDpWgNG6tGPs+bGJvLzH4\n5n9GiM9t+7sr49GgIOpAWsClI07tdfupawAvv6nfwQKBgQDQ7hGt3H7gz3Qs9QdT\nsgT40FsznQwRzlgbAByB0zA7Iih+4O6MGZcSWbyoYhDHnkwsfdvqWGXhrsILpSD4\nguXtzkQwDc/V/8xBrkmcFegr8f3ulEBdTV8TBUqGDJwOSQEa1GKYe45zW/gp1U4l\noawCsn3tDwAAptuOvQDUO/jkhQKBgQDPMVIRHOysrfjjb4w3eVBFEoD2x4op/qcC\nqUbE/N+HkgrlUeFGhu4KASaS8uemkRjJjQNp3KR+HJfHmKJIDDe1j+Ie6ykNAT1E\n5IrA9NzsF/bzdO+FAHNTYlBBOsCaFeuboO4I0AdmC0R54+PayvRF7fky1aWXUb6f\nigS5ikD70QKBgQC4Xq3ZOC/64PcLSTsq/3hlvTAOLvNcrzOOuB1v71ariCwmMwYv\nOdHXzrqt+MQH88gSpwovFczqSBZSwmiDBLg0j4YaxcV3eiDcgRnSFH7qcMT+CXN3\nInTYyx2Fh5EbBg9khrFvD/GYGTu4ZtRsXuv1AWAgltEQwi4UGvOlVjsAJQKBgQCo\n0NDDLMQSNnXyKfMfR/MFNHxrlk2WxewiGPaWjks61N2X100r/8h30lQxq0TfzJ1b\nq0+6s5I7RuTMNisTdRD3GFLvSj/aXsYjGeuMKHbQzv3hg8ecoK9Wo2Ysn8hKQ84C\nse8Asy80D74tamc+39qEF8/RgY44atxcdUJAQsuL4QKBgQDKaZ5o3CgS5m5wSDvf\nMofsy9hoxzyvjgU4W+KR2b8WRBdQDXK9AsSBAj6wTTDBqS0VcQ2MlI804rLklJQt\n2iTtEmvUQng88WspyXl0sy1+WzJbcmn9GVPkbwacDiMLKZZLsVK+sj4Tf/4wq3Ye\no/DcRo4M0ORbikfplSWjLDmOag==\n-----END PRIVATE KEY-----\n",
+  "client_email": "ocr-escaneado-creditu@spherical-park-415115.iam.gserviceaccount.com",
+  "client_id": "116604469734675522266",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/ocr-escaneado-creditu%40spherical-park-415115.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

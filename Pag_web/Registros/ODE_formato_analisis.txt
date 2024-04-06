@@ -1,0 +1,82 @@
+Inmobiliaria(s) Vendedora(s):
+- Nombre: Inmobiliaria Sur Once Spa
+- Rut: 76.751.429-8
+- Banco Alzante: Banco Consorcio
+
+Nombre del Proyecto:
+- Conjunto Mirador De Lauquen
+
+Deudor:
+- Nombre: Daniella Noemi Soto Valdes
+- Cédula Nacional: 19.855.718-8
+- Nacionalidad: Chilena
+- Profesión: Auxiliar Tecnico
+- Estado Civil: Soltero(a)
+
+Seguros:
+- Seguro Desgravamen: Sí, 0,13 UF
+- Seguro Incendio/Sismo: Sí, 0,45 UF
+- Seguro Cesantia: Sí, 0,83 UF
+- Seguro Credito: Sí, 0,00 UF
+
+Datos del Crédito (en UF):
+- Precio venta: 2.200 UF
+- Monto líquido: 1.695 UF
+- Monto bruto: 1.695 UF
+- Gastos operacionales del préstamo: 0 UF
+- Cuota contado: 0 UF
+- Precio venta estacionamiento: -
+- Precio tasación estacionamiento: -
+- Precio venta bodega: -
+- Precio tasación bodega: -
+- Plazo del crédito: 30 años
+- Meses de gracia: 5
+- Cuota dividendo sin seguro (inicial): 12,18 UF
+- Cuota dividendo sin seguro (final): 12,84 UF
+- Tasa de interés: 7,68 %
+
+Desglose Subsidio:
+- Tipo de subsidio: DS19
+- Subsidio base: 125,00
+- Subsidio integración: 200,00
+- Subsidio captación: 100,00
+- Monto total subsidio: 425,00
+- Ahorro previo: 80,00
+
+Mandatario:
+- Nombre: Miguel Andres Soto Valdes
+- Rut: 16.988.358-0
+- Estado Civil: Casado, Sociedad Conyugal
+- Profesión: Operador De Planta Industrial
+- Dirección: AVENIDA LAS QUINTAS 240, Los Ángeles, Biobío, Región del Biobío
+
+Codeudor:
+- Nombre: Miguel Andres Soto Valdes
+- Rut: 16.988.358-0
+- Estado Civil: Casado, Sociedad Conyugal
+- Profesión: Operador De Planta Industrial
+- Dirección: AVENIDA LAS QUINTAS 240, Los Ángeles, Biobío, Región del Biobío
+
+Datos del inmueble:
+- Número: 206
+- Torre: B
+- Dirección: Calle Lauquen 341
+- Rol: 01711-00146
+- Lote: -
+- Manzana: Piso 2
+
+Gastos operacionales:
+
+Estimados:
+    - Tasación: 3,00 UF
+    - Estudio de Títulos: 2,50 UF
+    - Escrituración: 3,20 UF
+    - Notaria: 3,00 UF
+    - Impuesto: 0,00 UF
+
+Provisionado:
+    - Tasación: 3,00 UF
+    - Estudio de Títulos: 2,50 UF
+    - Escrituración: 3,20 UF
+    - Notaria: 0,00 UF
+    - Impuesto: 0,00 UF

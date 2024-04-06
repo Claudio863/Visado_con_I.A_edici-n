@@ -1,0 +1,89 @@
+Inmobiliaria Vendedora:
+
+- Nombre: INMOBILIARIA SUR ONCE SpA
+- Rut: 76.751.429-8
+
+Deudor:
+
+- Nombre: DANIELLA NOEMI SOTO VALDES
+- Cédula Nacional: 19.855.718-8
+- Nacionalidad: Chilena
+- Profesión: Auxiliar técnico
+- Estado Civil: Soltera
+
+Nombre del Proyecto: 
+
+-Conjunto Mirador de Lauquen
+
+Datos del inmueble: 
+
+-Número: 206 
+-Torre: B 
+-Dirección: Calle Lauquen 341
+-Rol: 1711-146
+-Lote: -
+-Manzana: Piso 2
+
+Datos del Crédito: 
+
+
+-Precio venta: 2.200 UF
+-Monto líquido: 1.695 UF
+-Monto bruto: 1.695 UF
+-Gastos operacionales del préstamo: 0 UF
+-Cuota contado: 0 UF
+- Precio venta estacionamiento: -
+- Precio tasación estacionamiento: -
+- Precio venta bodega: -
+- Precio tasación bodega: -
+
+Desglose Subsidio:
+- Tipo de subsidio: DS19
+- Subsidio base: 125 UF
+- Subsidio integración: 200 UF
+- Subsidio captación: 100 UF
+- Monto total subsidio: 425 UF
+- Ahorro previo: 0 UF
+*-Monto líquido: 1.695 UF
+-Monto bruto: 1.695 UF
+-Gastos operacionales del préstamo: 0 UF
+
+- Plazo del crédito: 360 meses (30 años)
+- Meses de gracia: No se mencionan meses de gracia en el texto proporcionado.
+- Cuota dividendo sin seguro:
+  - Cuota inicial: 12,18 UF
+  - Cuota final: 13,20 UF
+- Tasa del crédito: 7,68% anual
+
+Datos Mandatario:
+
+Datos mandatario:
+-Nombre: MIGUEL ANDRES SOTO VALDES
+-Rut: 16.988.358-0
+-Estado civil: Casado
+-Profesión: Operador planta industrial
+-Dirección: Avenida Las Quintas número 240, comuna de Los Ángeles, Región del Biobío
+
+Datos Codeudor:
+
+Datos mandatario:
+-Nombre: MIGUEL ANDRES SOTO VALDES
+-Rut: 16.988.358-0
+-Estado civil: Casado
+-Profesión: Operador planta industrial
+-Dirección: Avenida Las Quintas número 240, comuna de Los Ángeles, Región del Biobío
+
+Gastos Operacionales:
+
+-Tasación: 3.00 UF
+-Estudio de Títulos: 2.50 UF
+-Notaría en Santiago: 3 UF
+-Redacción de escritura: 3.20 UF
+-Impuesto Mutuo: 0 UF
+-Seguro de incendio y sismo: 0.45 UF
+-Seguro de desgravamen: 0.13 UF
+-Seguro de desempleo: -
+-Seguro de Crédito: -
+
+Banco:
+- Nombre: BANCO CONSORCIO

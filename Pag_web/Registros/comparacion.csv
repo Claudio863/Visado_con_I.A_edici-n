@@ -1,0 +1,58 @@
+Puntos;Comparación;Dato Borrador;Dato ODE
+Inmobiliaria Vendedora;**;**;**
+Nombre;NO IGUAL;INMOBILIARIA SUR ONCE SpA;Inmobiliaria Sur Once Spa
+Rut;IGUAL;76.751.429-8;76.751.429-8
+Deudor;**;**;**
+Nombre;IGUAL;DANIELLA NOEMI SOTO VALDES;Daniella Noemi Soto Valdes
+Cédula Nacional;IGUAL;19.855.718-8;19.855.718-8
+Nacionalidad;IGUAL;Chilena;Chilena
+Profesión;NO IGUAL;Auxiliar técnico;Auxiliar Tecnico
+Estado Civil;IGUAL;Soltera;Soltero(a)
+Nombre del Proyecto;NO IGUAL;-;Conjunto Mirador De Lauquen
+Datos del Inmueble;**;**;**
+Número;IGUAL;206;206
+Torre;IGUAL;B;B
+Dirección;NO IGUAL;Calle Lauquen 341;Calle Lauquen 341
+Rol;NO IGUAL;1711-146;01711-00146
+Lote;NO IGUAL;;-
+Manzana;NO IGUAL;Piso 2;Piso 2
+Datos del Crédito;**;**;**
+Precio venta;NO IGUAL;2.200 UF;2.200 UF
+Monto líquido;IGUAL;1.695 UF;1.695 UF
+Monto bruto;IGUAL;1.695 UF;1.695 UF
+Gastos operacionales del préstamo;IGUAL;0 UF;0 UF
+Cuota contado;NO IGUAL;0 UF;0 UF
+Precio venta estacionamiento;NO IGUAL;;-
+Precio tasación estacionamiento;NO IGUAL;;-
+Precio venta bodega;NO IGUAL;;-
+Precio tasación bodega;NO IGUAL;;-
+Plazo del crédito;NO IGUAL;360 meses (30 años);30 años
+Meses de gracia;NO IGUAL;No se mencionan meses de gracia en el texto proporcionado.;5
+Cuota dividendo sin seguro - Cuota inicial;NO IGUAL;12,18 UF;12,18 UF
+Cuota dividendo sin seguro - Cuota final;NO IGUAL;13,20 UF;12,84 UF
+Tasa del crédito;NO IGUAL;7,68% anual;7,68%
+Desglose Subsidio;**;**;**
+Tipo de subsidio;NO IGUAL;DS19;DS19
+Subsidio base;IGUAL;125 UF;125
+Subsidio integración;IGUAL;200 UF;200
+Subsidio captación;IGUAL;100 UF;100
+Monto total subsidio;IGUAL;425 UF;425
+Ahorro previo;NO IGUAL;0 UF;80
+Mandatario;**;**;**
+Nombre;NO IGUAL;MIGUEL ANDRES SOTO VALDES;Miguel Andres Soto Valdes
+Rut;IGUAL;16.988.358-0;16.988.358-0
+Estado Civil;NO IGUAL;Casado;Casado, Sociedad Conyugal
+Profesión;NO IGUAL;Operador planta industrial;Operador De Planta Industrial
+Dirección;NO IGUAL;Avenida Las Quintas número 240, comuna de Los Ángeles, Región del Biobío;AVENIDA LAS QUINTAS 240, Los Ángeles, Biobío, Región del Biobío
+Codeudor;**;**;**
+Nombre;NO IGUAL;;Miguel Andres Soto Valdes
+Rut;NO IGUAL;;16.988.358-0
+Estado Civil;NO IGUAL;;Casado, Sociedad Conyugal
+Profesión;NO IGUAL;;Operador De Planta Industrial
+Dirección;NO IGUAL;;AVENIDA LAS QUINTAS 240, Los Ángeles, Biobío, Región del Biobío
+Gastos operacionales del préstamo;**;**;**
+Tasación;IGUAL;3.00 UF;3,00 UF
+Estudio de Títulos;IGUAL;2.50 UF;2,50 UF
+Escrituración;IGUAL;3.20 UF;3,20 UF
+Notaría;NO IGUAL;3.00 UF;3,00 UF
+Impuesto;NO IGUAL;0 UF;0,00 UF
