@@ -27,7 +27,7 @@ def split_pdf_pages(file_path, paginas_path):
             pages.append(output_file_path)
     return pages
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] ='Pag_web/spherical-park-415115-1b5c59410476.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] ='Pag_web/client_secret.json'
 
 
 

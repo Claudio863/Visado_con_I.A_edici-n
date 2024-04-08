@@ -56,7 +56,7 @@ def envio_registro_F_T(df_comparacion, ejecutivo, respuesta_general_borrador, od
     df_comparacion.to_csv(path, index=False, sep=";")
     print("Iniciando proceso de envío de registros")
     CLIENT_SECRET_FILE = "Pag_web/correo.json"
-    SERVICE_ACCOUNT_FILE = "Pag_web/Cred.json"
+    SERVICE_ACCOUNT_FILE = "Pag_web/client_secret.json"
     API_NAME = "drive"
     API_VERSION = "v3"
     SCOPES = ["https://www.googleapis.com/auth/drive"]
