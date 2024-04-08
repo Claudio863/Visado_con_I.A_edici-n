@@ -11,8 +11,6 @@ from io import StringIO
 import time
 
 import openai
-api_keyx ="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"  # Asegúrate de reemplazar con tu clave real
-openai.api_key = api_keyx
 import os
 import streamlit as st
 from googleapiclient.http import MediaFileUpload
@@ -70,7 +68,7 @@ def main():
         my_bar = st.progress(0, text=progress_text)
         my_bar.progress(0, text=progress_text+":robot_face:"+ "0%")
         import openai
-        api_keyx="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"
+        api_keyx=st.secrets["API_KEY_OPENAI"]
 
         if borrador is not None and ode is not None:
             # Aquí puedes agregar el código que deseas ejecutar con los documentos cargados
@@ -540,10 +538,8 @@ def main():
 
             ### Tabulación ODE
             #(Marketing)
-            api_keyx="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"
+            api_keyx=st.secrets["API_KEY_OPENAI"]
             #(Operaciones)
-            #api_keyx="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"
-
             Mensajes_tab_ode=mensaje("Tab_ode")
 
             prompt = """Estructura este texto en el formato:
@@ -1151,8 +1147,7 @@ del siguiente fragmento de texto:"""
             my_bar.progress(90, text=progress_text+":robot_face:"+ "90%")
             ### Comparacion de datos
             prompt="Necesito que compares los siguientes datos uno es un borrador el cual corresponde a: "+respuesta_general_borrador+"\n\n"+" y el otro documento corresponde a ODE y corresponde a:"+"\n\n" +ode_tabulada+" \n, por favor compara los datos y entrega la información en formato de tabla csv."
-            api_gpt4="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"
-            openai.api_key = api_gpt4
+            openai.api_key = api_keyx
 
 
             Mensajes_comparacion=mensaje("Comparacion")
