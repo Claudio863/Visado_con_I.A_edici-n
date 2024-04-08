@@ -10,8 +10,8 @@ import streamlit as st
 from PyPDF2 import PdfReader, PdfWriter
 endpoint = 'documentai.googleapis.com'
 location='us'
-project_id="spherical-park-415115"
-processor_id="d3803adbf6e9eec7"
+project_id="appvisado"
+processor_id="f4abc41069d62d01"
 
 def get_text_from_pdf_ocr(file_path):
     try:
