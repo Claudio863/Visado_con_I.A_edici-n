@@ -21,8 +21,6 @@ import re
 nltk.download('stopwords')
 
 import openai
-api_keyx ="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"  # Asegúrate de reemplazar con tu clave real
-openai.api_key = api_keyx
 import os
 import streamlit as st
 
@@ -48,8 +46,6 @@ def proceso (text,Entrenam,ode_path):
     nltk.download('stopwords')
 
     import openai
-    api_keyx ="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"  # Asegúrate de reemplazar con tu clave real
-    openai.api_key = api_keyx
     import os
     import streamlit as st
 
@@ -531,7 +527,7 @@ def proceso (text,Entrenam,ode_path):
 
     ### Tabulación ODE
     #(Marketing)
-    api_keyx="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"
+    api_keyx=st.secrets["API_KEY_OPENAI"]
     #(Operaciones)
     #api_keyx="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"
 
@@ -1137,8 +1133,7 @@ def proceso (text,Entrenam,ode_path):
 
     ### Comparacion de datos
     prompt="Necesito que compares los siguientes datos uno es un borrador el cual corresponde a: "+respuesta_general_borrador+" y el otro documento corresponde a ODE y corresponde a:" +ode_tabulada+" \n, por favor compara los datos y entrega la información en formato de tabla csv."
-    api_gpt4="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"
-    openai.api_key = api_gpt4
+    openai.api_key = api_keyx
     my_bar.progress(90, text=progress_text+":robot_face:"+ "90%")
 
 
