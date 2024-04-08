@@ -1,6 +1,6 @@
 
 import os
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'Pag_web/client_secret.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'Pag_web/google_ocr.json'
 # pip install google-cloud-documentai
 from google.cloud import documentai
 from google.api_core.client_options import ClientOptions
