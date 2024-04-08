@@ -1,6 +1,6 @@
 
 import os
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'Pag_web/spherical-park-415115-1b5c59410476.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'Pag_web/client_secret.json'
 # pip install google-cloud-documentai
 from google.cloud import documentai
 from google.api_core.client_options import ClientOptions
