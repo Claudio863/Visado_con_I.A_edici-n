@@ -1240,7 +1240,6 @@ del siguiente fragmento de texto:"""
             path = ruta_carpeta +"/"+"comparacion.csv"
             df_comparacion.to_csv(path, index=False, sep=";")
             print("Iniciando proceso de envío de registros")
-            CLIENT_SECRET_FILE = "Pag_web/correo.json"
             SERVICE_ACCOUNT_FILE = "Pag_web/client_secret.json"
             API_NAME = "drive"
             API_VERSION = "v3"
