@@ -9,7 +9,7 @@ import pandas as pd
 import time
 from io import StringIO
 import time
-
+from googleapiclient.http import MediaIoBaseDownload
 import openai
 import os
 import streamlit as st
@@ -1302,9 +1302,47 @@ del siguiente fragmento de texto:"""
             st.code(id_operacion, language="python")
 
             import subprocess
-
-            # Ruta al archivo .py que quieres ejecutar
+            import io
             
+            # Ruta al archivo .py que quieres ejecutar
+            file_id = "15HZeLv_-xpnF0vCqFBi3i_SEF7MQTCX-"
+            request = service.files().get_media(fileId=file_id)
+            fh = io.BytesIO()
+            downloader = MediaIoBaseDownload(fh, request)
+            done = False
+            while done is False:
+                status, done = downloader.next_chunk()
+            fh.seek(0)
+            # Convert the TSV file to a DataFrame
+            #st.write(downloader)
+            df = pd.read_csv(fh, delimiter="\t")
+            # Get the current index
+            index = df.index.tolist()
+
+            # Swap the second and third rows
+            index[0], index[1], index[2] = index[1], index[2], index[0]
+
+            # Reindex the DataFrame
+            #df_nuevo = df.reindex(index)
+            df = df.drop(df.index[0])
+            df = df.reset_index(drop=True)
+            from datetime import datetime
+
+            # Obtener la fecha y hora actual
+            fecha_actual = datetime.now()
+
+            # Extraer la hora y la fecha
+            hora_actual = fecha_actual.strftime("%H:%M:%S")
+            fecha_actual = fecha_actual.strftime("%Y-%m-%d")
+
+            print("Hora actual:", hora_actual)
+            print("Fecha actual:", fecha_actual)
+            new_row = {'Operador': ejecutivo+"   Fecha:"+fecha_actual+", Hora:"+hora_actual, 'ID': id_operacion}
+            df = pd.concat([df, pd.DataFrame(new_row, index=[0])], ignore_index=True)
+            df.to_csv(ruta_carpeta+"/"+'Ultimos_registros.tsv', sep='\t', index=False)
+            media = MediaFileUpload(ruta_carpeta+"/"+'Ultimos_registros.tsv', mimetype='text/tab-separated-values')
+            # Update the file
+            service.files().update(fileId=file_id, media_body=media).execute()
             
         else:
             st.warning("Por favor, carga ambos documentos antes de ejecutar el código.")
