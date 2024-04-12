@@ -17,8 +17,8 @@ from googleapiclient.http import MediaIoBaseDownload
 import io
 
 
-CLIENT_SECRET_FILE = "Pag_web/correo.json"
-SERVICE_ACCOUNT_FILE = "Pag_web/Cred.json"
+
+SERVICE_ACCOUNT_FILE = "Pag_web/google_ocr.json"
 API_NAME = "drive"
 API_VERSION = "v3"
 SCOPES = ["https://www.googleapis.com/auth/drive"]
@@ -249,8 +249,8 @@ if len(id_comparacion) is not 0:
         st.success("Tabla guardada con éxito")
         contador=0
         print("Iniciando proceso de envío de registros")
-        CLIENT_SECRET_FILE = "Pag_web/correo.json"
-        SERVICE_ACCOUNT_FILE = "Pag_web/Cred.json"
+        ### Google Drive
+        SERVICE_ACCOUNT_FILE = "Pag_web/google_ocr.json"
         API_NAME = "drive"
         API_VERSION = "v3"
         SCOPES = ["https://www.googleapis.com/auth/drive"]
