@@ -75,7 +75,7 @@ def envio_registro_F_T(df_comparacion, ejecutivo, respuesta_general_borrador, od
     service = Create_Service_With_Service_Account(SERVICE_ACCOUNT_FILE, API_NAME, API_VERSION, SCOPES)
     #service = Create_Service(CLIENT_SECRET_FILE, API_NAME, API_VERSION, SCOPES)
     # Crear una carpeta en Google Drive
-    parent_folder_id = '19u7ZPZe6IrEmPUjdVE7zhnBr5oUzY-4P'
+    parent_folder_id = '1p-xMyo7TTY-RKrVgve4cxaU78kcMJP97'
 
     folder_metadata = {
     'name': carpeta,
