@@ -74,7 +74,7 @@ def envio_registro_F_T(df_comparacion, ejecutivo, respuesta_general_borrador, od
 
     service = Create_Service_With_Service_Account(SERVICE_ACCOUNT_FILE, API_NAME, API_VERSION, SCOPES)
     #service = Create_Service(CLIENT_SECRET_FILE, API_NAME, API_VERSION, SCOPES)
-    # Crear una carpeta en Google Drive
+    #Crear una carpeta en Google Drive
     parent_folder_id = '1p-xMyo7TTY-RKrVgve4cxaU78kcMJP97'
 
     folder_metadata = {
@@ -114,7 +114,7 @@ def envio_registro_F_T(df_comparacion, ejecutivo, respuesta_general_borrador, od
 
     st.write("Tu código de operación es: ")
     id_operacion="["+"'"+id_comparacion+"'"+","+"'"+id_ejecutivo+"'"+","+"'"+folder_id+"'"+"]"
-    file_id = "1rP6YfD0fauut314c0c4dB3HmWJ-Ks-T8"
+    file_id = "15HZeLv_-xpnF0vCqFBi3i_SEF7MQTCX-"
     request = service.files().get_media(fileId=file_id)
     fh = io.BytesIO()
     downloader = MediaIoBaseDownload(fh, request)
