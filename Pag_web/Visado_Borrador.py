@@ -1161,6 +1161,7 @@ del siguiente fragmento de texto:"""
             end_time = time.time()
             execution_time = end_time - start_time
             comparacion=response['choices'][0]['message']['content']
+            
             prompts.append(prompt)
             #df = pd.read_csv(StringIO(comparacion),delimiter=";")
             
@@ -1168,31 +1169,85 @@ del siguiente fragmento de texto:"""
             my_bar.progress(100, text=progress_text+":robot_face:"+ "Listo!")
             time.sleep(2)
             # Crear un DataFrame desde la cadena de texto
-            df_comparacion = pd.read_csv(StringIO(comparacion),delimiter=";")
-            print(df_comparacion)
-            end_time = time.time()  # Guarda el tiempo actual después de ejecutar el script
+            try:
+                df_comparacion = pd.read_csv(StringIO(comparacion),delimiter=";")
+                print(df_comparacion)
+                end_time = time.time()  # Guarda el tiempo actual después de ejecutar el script
 
-            execution_time = end_time - start_time  # Calcula la diferencia entre los dos tiempos
+                execution_time = end_time - start_time  # Calcula la diferencia entre los dos tiempos
 
-            print(f"El script tardó {execution_time} segundos en ejecutarse.")
+                print(f"El script tardó {execution_time} segundos en ejecutarse.")
 
 
-            my_bar.empty()
-            
-            # Mostrar resultados
-            st.header("Resultados")
-            st.write(f"El script tardó {execution_time} segundos en ejecutarse.")
-            st.write(f"El costo de ejecución fue de {cost} dólares.")
-            # Aplicar estilo condicional
-            
-            def color_comparacion(val):
-                    if val == 'IGUAL':
-                        return 'background-color: green; color: white'
-                    elif val == 'NO IGUAL':
-                        return 'background-color: red; color: white'
-                    else:
-                        return ''
-            # Aplicar estilo condicional
+                my_bar.empty()
+                
+                # Mostrar resultados
+                st.header("Resultados")
+                st.write(f"El script tardó {execution_time} segundos en ejecutarse.")
+                st.write(f"El costo de ejecución fue de {cost} dólares.")
+                # Aplicar estilo condicional
+                
+                def color_comparacion(val):
+                        if val == 'IGUAL':
+                            return 'background-color: green; color: white'
+                        elif val == 'NO IGUAL':
+                            return 'background-color: red; color: white'
+                        else:
+                            return ''
+                # Aplicar estilo condicional
+            except:
+                import openai
+
+                # Asegúrate de tener tu API Key configurada
+                api_keyx = 'tu_api_key_aquí'
+                openai.api_key = api_keyx
+
+                # Mensajes de contexto para el bot
+                texto_csv_incorrecto = comparacion
+                Mensajes_Banco_alzante = [
+                    {"role": "system", "content": "El bot está diseñado para corregir y verificar formatos de texto en CSV. Asegúrese de especificar los detalles del texto y lo que necesita corregir."},
+                    {"role": "user", "content": "Necesito que revises y corrijas este texto para que su formato sea CSV válido, delimitado por ';'"+texto_csv_incorrecto}
+                ]
+
+                # Aquí va el string que el usuario quiere convertir o corregir.
+
+                
+                
+
+                # Llamada a la API
+                response = openai.ChatCompletion.create(
+                    model="gpt-3.5-turbo",
+                    messages=Mensajes_Banco_alzante
+                )
+
+                # Imprimir la respuesta del bot
+                comparacion=response['choices'][0]['message']['content']
+                df_comparacion = pd.read_csv(StringIO(comparacion),delimiter=";")
+                print(df_comparacion)
+                end_time = time.time()  # Guarda el tiempo actual después de ejecutar el script
+
+                execution_time = end_time - start_time  # Calcula la diferencia entre los dos tiempos
+
+                print(f"El script tardó {execution_time} segundos en ejecutarse.")
+
+
+                my_bar.empty()
+                
+                # Mostrar resultados
+                st.header("Resultados")
+                st.write(f"El script tardó {execution_time} segundos en ejecutarse.")
+                st.write(f"El costo de ejecución fue de {cost} dólares.")
+                # Aplicar estilo condicional
+                
+                def color_comparacion(val):
+                        if val == 'IGUAL':
+                            return 'background-color: green; color: white'
+                        elif val == 'NO IGUAL':
+                            return 'background-color: red; color: white'
+                        else:
+                            return ''
+                # Aplicar estilo condicional
+
             st.write("Comparación de datos")
             st.dataframe(df_comparacion.style.applymap(color_comparacion))
             #st.dataframe(df_comparacion)
@@ -1246,7 +1301,7 @@ del siguiente fragmento de texto:"""
             SCOPES = ["https://www.googleapis.com/auth/drive"]
             ruta_carpeta="Pag_web/Registros"
             ###Ejecutivo
-
+            
             ### Rut
             rut=df_comparacion[df_comparacion["Puntos"]=="Cédula Nacional"]["Dato ODE"]
             inde=rut.index[0]
