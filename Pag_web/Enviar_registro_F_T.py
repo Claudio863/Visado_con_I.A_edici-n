@@ -9,9 +9,11 @@ import streamlit as st
 import os
 from googleapiclient.http import MediaIoBaseDownload
 import io
+import pytz
+
 
 print("Iniciando proceso de envío de registros")
-def envio_registro_F_T(df_comparacion, ejecutivo, respuesta_general_borrador, ode_tabulada):
+def envio_registro_F_T(df_comparacion, ejecutivo, respuesta_general_borrador, ode_tabulada,times):
 
     import os
     import random
@@ -44,16 +46,23 @@ def envio_registro_F_T(df_comparacion, ejecutivo, respuesta_general_borrador, od
     path = ruta_carpeta +"/"+"respuesta_general_borrador.txt"
     with open(path, "w") as file:
         file.write(respuesta_general_borrador)
-        #Respuesta_general_borrador
+    #ODE_tabulada
     path = ruta_carpeta +"/"+"ODE_formato_analisis.txt"
     with open(path, "w") as file:
         file.write(ode_tabulada)
+    #Nombre de operador
     path = ruta_carpeta +"/"+"Nombre_de_Operador.txt"
-    st.write("El nombre del operador es: ", ejecutivo)
+    #st.write("El nombre del operador es: ", ejecutivo)
+    #Tiempo comparacion
     with open(path, "w") as file:
         file.write(ejecutivo)
+    path = ruta_carpeta +"/"+"tiempo_comparacion.txt"
+    with open(path, "w") as file:
+        file.write(times)
+    #Comparacion
     path = ruta_carpeta +"/"+"comparacion.csv"
     df_comparacion.to_csv(path, index=False, sep=";")
+    
     print("Iniciando proceso de envío de registros")
     SERVICE_ACCOUNT_FILE = "Pag_web/google_ocr.json"
     API_NAME = "drive"
@@ -63,9 +72,17 @@ def envio_registro_F_T(df_comparacion, ejecutivo, respuesta_general_borrador, od
     ###Ejecutivo
 
     ### Rut
-    rut=df_comparacion[df_comparacion["Puntos"]=="Cédula Nacional"]["Dato ODE"]
-    inde=rut.index[0]
-    rut=rut[inde]
+    try:
+        rut = df_comparacion[df_comparacion["Puntos"] == "Cédula Nacional"]["Dato ODE"]
+        inde = rut.index[0]
+        rut = rut[inde]
+    except IndexError:
+        try:
+            rut = df_comparacion[df_comparacion["Puntos"] == "Cédula Nacional"]["Dato Borrador"]
+            inde = rut.index[0]
+            rut = rut[inde]
+        except IndexError:
+            rut = "-"
     ### código único
     codigo = str(random.randint(10000, 99999))
 
@@ -90,8 +107,9 @@ def envio_registro_F_T(df_comparacion, ejecutivo, respuesta_general_borrador, od
     path_ode = ruta_carpeta +"/"+"ODE_formato_analisis.txt"
     ejecutivo_path=ruta_carpeta+"/"+"Nombre_de_Operador.txt"
     comparacion_ruta=ruta_carpeta+"/"+"comparacion.csv"
-    file_names = [path_borrador, path_ode, ejecutivo_path,comparacion_ruta]
-    mime_types = ["text/plain", "text/plain", "text/plain", "text/csv"]
+    tiempo_comparacion=ruta_carpeta+"/"+"tiempo_comparacion.txt"
+    file_names = [path_borrador, path_ode, ejecutivo_path,comparacion_ruta,tiempo_comparacion]
+    mime_types = ["text/plain", "text/plain", "text/plain", "text/csv","text/plain"]
     count=0
     for file_name, mime_type in zip(file_names, mime_types):
         file_metadata = {
@@ -110,10 +128,12 @@ def envio_registro_F_T(df_comparacion, ejecutivo, respuesta_general_borrador, od
             id_comparacion = file.get('id')
         elif count==2:
             id_ejecutivo = file.get('id')
+        elif count==4:
+            id_tiempo_comparacion=file.get('id')
         count+=1
 
     st.write("Tu código de operación es: ")
-    id_operacion="["+"'"+id_comparacion+"'"+","+"'"+id_ejecutivo+"'"+","+"'"+folder_id+"'"+"]"
+    id_operacion="["+"'"+id_comparacion+"'"+","+"'"+id_ejecutivo+"'"+","+"'"+folder_id+"'"+","+"'"+id_tiempo_comparacion+"'"+"]"
     file_id = "15HZeLv_-xpnF0vCqFBi3i_SEF7MQTCX-"
     request = service.files().get_media(fileId=file_id)
     fh = io.BytesIO()
@@ -141,6 +161,9 @@ def envio_registro_F_T(df_comparacion, ejecutivo, respuesta_general_borrador, od
     fecha_actual = datetime.now()
 
     # Extraer la hora y la fecha
+    chile_tz = pytz.timezone('Chile/Continental')
+    fecha_actual = datetime.now(chile_tz)
+
     hora_actual = fecha_actual.strftime("%H:%M:%S")
     fecha_actual = fecha_actual.strftime("%Y-%m-%d")
 
@@ -152,5 +175,58 @@ def envio_registro_F_T(df_comparacion, ejecutivo, respuesta_general_borrador, od
     media = MediaFileUpload(ruta_carpeta+"/"+'Ultimos_registros.tsv', mimetype='text/tab-separated-values')
     # Update the file
     service.files().update(fileId=file_id, media_body=media).execute()
+    #st.write(times)
+    #st.write(id_tiempo_comparacion)
     return id_operacion
-    
+def registrar_error(ejecutivo,error):
+    import os
+    import random
+    from googleapiclient.http import MediaFileUpload
+    from Google import Create_Service_With_Service_Account
+
+    # Generate a unique id for the error
+    id = random.randint(10000, 99999)
+
+    # Define the path where the error will be recorded
+
+    # Create the folder within the directory path_registro
+    ruta_carpeta = "Pag_web/Registros"
+
+    # Verify if the folder was successfully created
+    if os.path.exists(ruta_carpeta):
+        print("Folder successfully created at:", ruta_carpeta)
+    else:
+        print("Error creating the record folder.")
+
+    # Write the error to a .txt file
+    path = ruta_carpeta + "/" + "error.txt"
+    with open(path, "w") as file:
+        file.write(str(error))
+
+    # Initialize the Google Drive service
+    SERVICE_ACCOUNT_FILE = "Pag_web/google_ocr.json"
+    API_NAME = "drive"
+    API_VERSION = "v3"
+    SCOPES = ["https://www.googleapis.com/auth/drive"]
+
+    service = Create_Service_With_Service_Account(SERVICE_ACCOUNT_FILE, API_NAME, API_VERSION, SCOPES)
+
+    # Create a folder in Google Drive
+    folder_id = '1rAnXXWxZyXeikb7uh9pugq-WifM8WBRz'
+
+
+
+    file_metadata = {
+        "name": f"{id}_{ejecutivo}.txt",
+        "parents": [folder_id]
+    }
+
+    media = MediaFileUpload(path, mimetype="text/plain")
+
+    file = service.files().create(
+        body=file_metadata,
+        media_body=media,
+        fields="id"
+    ).execute()
+
+    print('The error has been recorded.')

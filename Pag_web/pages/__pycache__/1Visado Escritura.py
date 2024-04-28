@@ -14,8 +14,20 @@ from Enviar_registro_F_T import envio_registro_F_T
 import Funciones_OCR as ocr
 import Proceso_filtro as chat_gpt
 from Enviar_registro_F_T import registrar_error
-from docx import Document
 
+def split_pdf_pages(file_path, paginas_path):
+    pages = []
+    with open(file_path, 'rb') as file:
+        reader = PdfReader(file)
+        num_pages = len(reader.pages)
+        for page_num in range(num_pages):
+            writer = PdfWriter()
+            writer.add_page(reader.pages[page_num])
+            output_file_path = os.path.join(paginas_path, f"page_{page_num + 1}.pdf")
+            with open(output_file_path, 'wb') as output_file:
+                writer.write(output_file)
+            pages.append(output_file_path)
+    return pages
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] ='Pag_web/google_ocr.json'
 
@@ -37,20 +49,20 @@ ejecutivo = st.selectbox(
 
 
 st.header("Visado Escritura Scan con I.A")
-borrador = st.file_uploader("Seleccionar Borrador en formato PDF", type=["txt", "pdf", "docx"])
+borrador = st.file_uploader("Seleccionar Escritura en formato PDF", type=["txt", "pdf", "docx"])
 ode = st.file_uploader("Seleccionar ODE en formato PDF", type=["txt", "pdf"])
 
 # ...
 #docx_path = None  # Define docx_path with a default value
 
 if borrador is not None:
-    docx_path="Pag_web/data_borrador/borrador.docx"
-    with open(os.path.join("Pag_web/data_borrador/", "borrador.docx"), "wb") as f:
+    docx_path="Pag_web/data_scan/scan.pdf"
+    with open(os.path.join("Pag_web/data_scan/", "scan.pdf"), "wb") as f:
         f.write(borrador.getvalue())
 
 if ode is not None:
-    ode_path="Pag_web/data_borrador/ode.pdf"
-    with open(os.path.join("Pag_web/data_borrador", "ode.pdf"), "wb") as f:
+    ode_path="Pag_web/data_scan/ode.pdf"
+    with open(os.path.join("Pag_web/data_scan", "ode.pdf"), "wb") as f:
         f.write(ode.getvalue())
         
 ## Logo de botón
@@ -61,26 +73,27 @@ col1.image(image_b, use_column_width=True)
 try:
     if st.button("Comparar con I.A :robot_face:"):
         start_time = time.time()
+        file_path = docx_path
+        paginas_path = "Pag_web/Paginas"
+        page_list = ocr.split_pdf_pages(file_path, paginas_path)
+        files_and_directories = os.listdir(paginas_path)
         #st.write(files_and_directories)
         text=""
-        def leer_docx(docx_path):
-            # Cargar el documento DOCX
-            doc = Document(docx_path)
+        progress_text = "OCR procesando documento escaneado... :mag_right: 	:memo:  "
+        st.write(progress_text)
+        
+        my_bar = st.progress(0, text=progress_text)
+        for page in page_list:
+            p_avance= page_list.index(page)/len(page_list)
+            p_avance=p_avance*100
+            #p_avance=p_avance/3
+            truncado = int(p_avance)
+            my_bar.progress(truncado)
+            
 
-            # Inicializar una cadena para almacenar el contenido del documento
-            text = ""
-
-            # Iterar a través de los párrafos del documento y agregarlos a la cadena
-            for paragraph in doc.paragraphs:
-                text += paragraph.text + "\n"
-
-            return text
-
-        if __name__ == "__main__":
-            # Ruta del archivo DOCX
-            # Leer el contenido del archivo DOCX y almacenarlo en la variable text
-            text = leer_docx(docx_path)
-
+            #st.write(page)
+            text_agregar=ocr.get_text_from_pdf_ocr(page)
+            text=text+"\n"+text_agregar
         print(text)
         entrenamiento_path="Pag_web/Entrenamiento_previo_prueba.tsv"
         Entrenam=pd.read_csv(entrenamiento_path,sep='\t',encoding='utf-8')
@@ -109,8 +122,10 @@ try:
             elif os.path.isdir(file_path):
                 shutil.rmtree(file_path)
         elapsed_time = time.time() - start_time
-
+        elapsed_time_minutes = round(elapsed_time / 60, 2)
         id_operacion=envio_registro_F_T(df,ejecutivo,respuesta_general_borrador,ode_tabulada,str(elapsed_time))
+        
+        st.write("El tiempo de ejecución fue de: ", str(elapsed_time_minutes))
         st.code(id_operacion, language="python")
 except Exception as e:
     elapsed_time = time.time() - start_time

@@ -21,6 +21,9 @@ import re
 nltk.download('stopwords')
 
 import openai
+#os.environ["OPENAI_API_KEY"] == st.secrets["API_KEY_OPENAI"]
+api_keyx =st.secrets["API_KEY_OPENAI"]
+openai.api_key = api_keyx
 import os
 import streamlit as st
 
@@ -46,6 +49,8 @@ def proceso (text,Entrenam,ode_path):
     nltk.download('stopwords')
 
     import openai
+    api_keyx ="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"  # Asegúrate de reemplazar con tu clave real
+    openai.api_key = api_keyx
     import os
     import streamlit as st
 
@@ -489,7 +494,7 @@ def proceso (text,Entrenam,ode_path):
 
         end_index = s_lower.find(end_lower, start_index)
         if end_index == -1:  # La secuencia de final no se encontró
-            return None
+            return ""
         
         return s[start_index:end_index]
 
@@ -527,8 +532,8 @@ def proceso (text,Entrenam,ode_path):
 
     ### Tabulación ODE
     #(Marketing)
-    api_keyx=st.secrets["API_KEY_OPENAI"]
     #(Operaciones)
+    api_keyx=st.secrets["API_KEY_OPENAI"]
     #api_keyx="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"
 
     Mensajes_tab_ode=mensaje("Tab_ode")
@@ -1140,8 +1145,9 @@ def proceso (text,Entrenam,ode_path):
     Mensajes_comparacion=mensaje("Comparacion")
     Mensajes_comparacion.append({"role": "user", "content":prompt})
     response = openai.ChatCompletion.create(
-        model="gpt-4-0125-preview",
-        messages=Mensajes_comparacion
+        model="gpt-4-1106-preview",
+        messages=Mensajes_comparacion,
+        temperature=0.2
 
 
     )
@@ -1149,12 +1155,43 @@ def proceso (text,Entrenam,ode_path):
     prompts.append(prompt)
     try:
         df = pd.read_csv(StringIO(comparacion),delimiter=";")
+        def color_comparacion(val):
+                    if val == 'IGUAL':
+                        return 'background-color: green; color: white'
+                    elif val == 'NO IGUAL':
+                        return 'background-color: red; color: white'
+                    else:
+                        return ''
+        # Display the dataframe in Streamlit
+        #my_bar.empty()
+        df_style=df.style.applymap(color_comparacion)
     except:
-        Mensajes_comparacion=mensaje("Comparacion")
-        Mensajes_comparacion.append({"role": "user", "content":prompt})
+        import openai
+
+        # Asegúrate de tener tu API Key configurada
+        openai.api_key = api_keyx
+
+        # Mensajes de contexto para el bot
+        texto_csv_incorrecto = comparacion
+        Mensajes_Banco_alzante = [
+            {"role": "system", "content": "El bot está diseñado para corregir y verificar formatos de texto en CSV. Asegúrese de especificar los detalles del texto y lo que necesita corregir."},
+            {"role": "user", "content": "Necesito que revises y corrijas este texto para que su formato sea CSV válido, delimitado por ';'"+texto_csv_incorrecto}
+        ]
+
+        # Aquí va el string que el usuario quiere convertir o corregir.
+
+        
+        
+
+        # Llamada a la API
         response = openai.ChatCompletion.create(
-            model="gpt-4-0125-preview",
-            messages=Mensajes_comparacion)
+            model="gpt-4-1106-preview",
+            messages=Mensajes_Banco_alzante,
+            temperature=0
+        )
+
+        # Imprimir la respuesta del bot
+        comparacion=response['choices'][0]['message']['content']
         df = pd.read_csv(StringIO(comparacion),delimiter=";")
     my_bar.progress(100, text=progress_text+":robot_face:"+ "100%")
     return(df, respuesta_general_borrador, cost, prompts, ode_tabulada)
