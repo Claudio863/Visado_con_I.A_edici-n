@@ -64,7 +64,7 @@ def envio_registro_F_T(df_comparacion, ejecutivo, respuesta_general_borrador, od
     df_comparacion.to_csv(path, index=False, sep=";")
     
     print("Iniciando proceso de envío de registros")
-    SERVICE_ACCOUNT_FILE = "Pag_web/google_ocr.json"
+    SERVICE_ACCOUNT_FILE = "Pag_web/Cred.json"
     API_NAME = "drive"
     API_VERSION = "v3"
     SCOPES = ["https://www.googleapis.com/auth/drive"]
@@ -204,7 +204,7 @@ def registrar_error(ejecutivo,error):
         file.write(str(error))
 
     # Initialize the Google Drive service
-    SERVICE_ACCOUNT_FILE = "Pag_web/google_ocr.json"
+    SERVICE_ACCOUNT_FILE = "Pag_web/Cred.json"
     API_NAME = "drive"
     API_VERSION = "v3"
     SCOPES = ["https://www.googleapis.com/auth/drive"]
