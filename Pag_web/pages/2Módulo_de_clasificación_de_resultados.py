@@ -27,7 +27,7 @@ try:
 
     service = Create_Service_With_Service_Account(SERVICE_ACCOUNT_FILE, API_NAME, API_VERSION, SCOPES)
     # Read the TSV file from Google Drive
-    file_id = "15HZeLv_-xpnF0vCqFBi3i_SEF7MQTCX-"
+    file_id = "1rP6YfD0fauut314c0c4dB3HmWJ-Ks-T8"
     request = service.files().get_media(fileId=file_id)
     fh = io.BytesIO()
     downloader = MediaIoBaseDownload(fh, request)
@@ -174,7 +174,7 @@ try:
 
             # Calcula la diferencia
             tiempo_clasificacion = end_time - start_time
-            ruta_carpeta="/mount/src/visado_con_i.a/Pag_web/Registros"
+            ruta_carpeta="Pag_web/Registros"
             df_comparacion_editado_SE=df_comparacion_editado.values
             from reportlab.lib import colors
             from reportlab.lib.pagesizes import letter
@@ -211,7 +211,7 @@ try:
             # Convertir el DataFrame a una lista de listas
             data = [df_pdf.columns.tolist()] + df_pdf.values.tolist()
             styles = getSampleStyleSheet()
-            ruta_carpeta="/mount/src/visado_con_i.a/Pag_web/Registros"
+            ruta_carpeta="Pag_web/Registros"
             # Crear el documento PDF
             pdf_filename = ruta_carpeta+"/"+"tabla.pdf"
             pdf = SimpleDocTemplate(pdf_filename, pagesize=letter)
@@ -264,7 +264,7 @@ try:
             API_NAME = "drive"
             API_VERSION = "v3"
             SCOPES = ["https://www.googleapis.com/auth/drive"]
-            ruta_carpeta="/mount/src/visado_con_i.a/Pag_web/Registros"
+            ruta_carpeta="Pag_web/Registros"
             ###Ejecutivo
             
             #ejecutivo="gabriel"
@@ -308,7 +308,7 @@ try:
                         "parents" : [folder_id]
                     }
                 elif count==0:
-                    folder_id = "19u7ZPZe6IrEmPUjdVE7zhnBr5oUzY-4P"
+                    folder_id = "14j0supDzl_c7cct9ZwHALFAE5ziLq2Q-"
                     name=registro+".pdf"
                     file_metadata = {
                         "name" : name,
