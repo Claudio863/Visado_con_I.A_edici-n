@@ -60,15 +60,15 @@ try:
                 ejecutivo_id=ids[id]
             elif id==2:
                 F_T_carpeta_id=ids[id]
-            elif id==3:
-                tiempo_comparacion_id=ids[id]
+            #elif id==3:
+            #    tiempo_comparacion_id=ids[id]
         #st.write(comparacion_id)
         ## Abriendo el archivo id
         
 
         service = Create_Service_With_Service_Account(SERVICE_ACCOUNT_FILE, API_NAME, API_VERSION, SCOPES)
-        file_ids = [comparacion_id, ejecutivo_id,tiempo_comparacion_id]
-        file_names = ["comparacion.csv","Nombre_de_Operador.txt","tiempo_comparacion.txt"]
+        file_ids = [comparacion_id, ejecutivo_id]
+        file_names = ["comparacion.csv","Nombre_de_Operador.txt"]
 
         # Download files from Google Drive
         for file_id, file_name in zip(file_ids, file_names):
@@ -85,8 +85,7 @@ try:
                 content = fh.read().decode('utf-8')
                 if file_name == "Nombre_de_Operador.txt":
                     ejecutivo = content
-                elif file_name == "tiempo_comparacion.txt":
-                    tiempo_comparacion = content
+
                 # Do something with the string file
         #st.dataframe(df_comparacion)
         
@@ -325,29 +324,14 @@ try:
                 count+=1
             
             
-            file_id = "1Bi7FkMfT6j12rj7QLl72-Nl6xLbCe74W"
-            request = service.files().get_media(fileId=file_id)
-            fh = io.BytesIO()
-            downloader = MediaIoBaseDownload(fh, request)
-            done = False
-            while done is False:
-                status, done = downloader.next_chunk()
-            fh.seek(0)
+
             # Convert the TSV file to a DataFrame
             #st.write(downloader)
             #ACTUALIZAMOS REGISTROS TEMPORALES
-            tiempo_comparacion=round(float(tiempo_comparacion) / 60, 2)
-            tiempo_clasificacion=round(tiempo_clasificacion / 60, 2)
-            path_df_temp="Pag_web/Registros/df_temp.csv"
-            df_time = pd.read_csv(fh, delimiter=",")
-            new_row = {'operador': [ejecutivo],'rut_cliente':[str(rut)],'tiempo_comparacion': [tiempo_comparacion], 'tiempo_clasificacion': [tiempo_clasificacion]}
-            new_row_df = pd.DataFrame(new_row)
-            new_row_df.reset_index(drop=True, inplace=True)
-            df_time = pd.concat([df_time, new_row_df], ignore_index=True)
-            df_time.to_csv(path_df_temp, sep=',', index=False)
-            media = MediaFileUpload(path_df_temp, mimetype='text/csv')
+            #tiempo_comparacion=round(float(tiempo_comparacion) / 60, 2)
+            #tiempo_clasificacion=round(tiempo_clasificacion / 60, 2)
+
             # Update the file
-            service.files().update(fileId=file_id, media_body=media).execute()
             st.markdown("**Código de la operación:**")
             st.code(registro, language="python")
             st.markdown("**Observaciones:**")
