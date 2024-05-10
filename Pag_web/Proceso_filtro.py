@@ -131,19 +131,13 @@ def proceso (text,Entrenam,ode_path):
     Gastos operacionales:
 
     Estimados:
-        -Tasación: 0,00 UF
-        -Estudio de Titulos: 0,00 UF
-        -Escrituracion: 3,55 UF
-        -Notaria: 3,00 UF
-        -Impuesto: 0,00 UF
-
-    Provisionado:
-        - Tasación: 0,00 UF
-        -Estudio de Titulos: 0,00 UF
-        -Escrituracion: 3,55 UF
-        -Notaria: 0,00 UF
-        -Impuesto: 0,00 UF
-
+        - Tasación:
+        - Estudio de Títulos:
+        - Escrituración:
+        - Notaria:
+        - Impuesto:
+        - CBR:
+        
     """
     res_muestra2_ode="""
     Inmobiliaria(s) Vendedora(s):
@@ -436,21 +430,7 @@ def proceso (text,Entrenam,ode_path):
 
         # Devolver la lista de fragmentos encontrados
         return coincidencias
-    def extract_substring(s, start, end):
-        s_lower = s.lower()
-        start_lower = start.lower()
-        end_lower = end.lower()
         
-        start_index = s_lower.find(start_lower)
-        if start_index == -1:  # La secuencia de inicio no se encontró
-            return None
-        start_index += len(start)  # Mover el índice de inicio al final de la secuencia de inicio
-
-        end_index = s_lower.find(end_lower, start_index)
-        if end_index == -1:  # La secuencia de final no se encontró
-            return None
-        
-        return s[start_index:end_index]
     def separate_text(text):
         index = text.find("\n \nOBSERVACIONES")
         if index != -1:
@@ -489,7 +469,7 @@ def proceso (text,Entrenam,ode_path):
         
         start_index = s_lower.find(start_lower)
         if start_index == -1:  # La secuencia de inicio no se encontró
-            return None
+            return ""
         start_index += len(start)  # Mover el índice de inicio al final de la secuencia de inicio
 
         end_index = s_lower.find(end_lower, start_index)
@@ -557,12 +537,6 @@ def proceso (text,Entrenam,ode_path):
     - Profesión:
     - Estado Civil:
 
-    Seguros:
-    -Seguro Desgravamen:
-    -Seguro Incendio/Sismo:
-    -Seguro Cesantia:
-    -Seguro Credito:
-
     Datos del Crédito (en UF):
 
     - Precio venta:
@@ -571,9 +545,7 @@ def proceso (text,Entrenam,ode_path):
     - Gastos operacionales del préstamo:
     - Cuota contado:
     - Precio venta estacionamiento: (Si no se encuentra el dato colocar un -)
-    - Precio tasación estacionamiento: (Si no se encuentra el dato colocar un -)
     - Precio venta bodega: (Si no se encuentra el dato colocar un -)
-    - Precio tasación bodega: (Si no se encuentra el dato colocar un -)
     -Plazo del crédito:
     -Meses de gracia:
     -Cuota dividendo sin seguro (inicial):
@@ -622,13 +594,8 @@ def proceso (text,Entrenam,ode_path):
         - Escrituración:
         - Notaria:
         - Impuesto:
-
-    Provisionado:
-        - Tasación:
-        - Estudio de Títulos:
-        - Escrituración:
-        - Notaria:
-        - Impuesto:
+        - CBR:
+        
 
     (Debes entregar solamente las variables solicitadas, es importante que mantengas el formato de la respuesta, ya que la respuesta que entregará el experto en estructurar información será llevada a una tabla y necesito que no tenga texto antes o después de la respuesta, solo las variables solicitadas en el formato que te mostré anteriormente. Si no tienes información para alguna variable coloca un - en su casilla correspondiente, pero no la omitas. No puedes agregar información adicional a la solicitada, ni omitir variables. Siempre están todas las variables solicitadas.)
     Este es el texto que debes estructurar: """
@@ -828,10 +795,10 @@ def proceso (text,Entrenam,ode_path):
     fragmento_texto=extract_substring(texto, "SEGUNDO:","TERCERO:")
     prompt = """Extrae los datos del inmuebles en este formato
 
-    -Número:  
-    -Torre:  
-    -Dirección: 
-    -Rol: 
+    -Número: (Viene seguido de "departamento número" o "número de departamento")
+    -Torre:  (Viene seguido de "torre" o "edificio")
+    -Dirección: (Viene seguido de "acceso por calle")
+    -Rol:  (Puede venir seguido de  "Rol de avalúo en trámite" o "pre-rol del Servicio de Impuestos Internos" o "rol de avalúo fiscal" ) 
     -Lote: En caso de no encontrar el dato coloca un guion (-)
     -Manzana: En caso de no encontrar el dato coloca un guion (-) y puede ser el piso del inmueble
     No puedes extraer más que estos datos solicitados. Además el dato de la Manzana es puede ser el piso del inmueble.
@@ -849,6 +816,21 @@ def proceso (text,Entrenam,ode_path):
 
     data_string=response['choices'][0]['message']['content']
     prompts.append(prompt+fragmento_texto)
+    
+    ### Extracción comuna 
+    #Mensajes_encabezado_preliminar=mensaje("comuna_extraccion")
+    #Mensajes_encabezado=Mensajes_encabezado_preliminar
+    #Mensajes_encabezado.append({"role": "user", "content": "Extrae la Región de este fragmento de texto (solamente respondes con la Región, no puedes entregar nada antes ni después): "+fragmento_texto})
+    openai.api_key = api_keyx
+
+    #response = openai.ChatCompletion.create(
+    #    model="gpt-3.5-turbo-0125",
+    #    messages= Mensajes_encabezado
+    #)
+    
+    #Region_borrador=print(response.choices[0].message['content'])
+    #data_string=data_string + '\n' + Region_borrador
+    
     respuesta_general_borrador=respuesta_general_borrador + '\n\nDatos del inmueble: \n\n' + data_string
     price_per_token = 0.0005 	  # Replace with the actual price per token
     total_tokens = response['usage']['total_tokens']
@@ -856,17 +838,16 @@ def proceso (text,Entrenam,ode_path):
     cost= cost+cost_in_dollars
     ### Datos del crédito (C3)
     fragmento_texto=extract_substring(texto, "TERCERO:","CUARTO:")
-    prompt = """Extrae los datos del crédito hipotecario:
+    prompt = """Extrae los datos del crédito hipotecario:  
 
     -Precio venta:
     -Monto líquido:
     -Monto bruto:
     -Gastos operacionales del préstamo:
-    -Cuota contado:
+    -Cuota contado: (inciso d) )
     - Precio venta estacionamiento: (Si no se encuentra el dato colocar un -)
-    - Precio tasación estacionamiento: (Si no se encuentra el dato colocar un -)
     - Precio venta bodega: (Si no se encuentra el dato colocar un -)
-    - Precio tasación bodega: (Si no se encuentra el dato colocar un -)
+
 
     Desglose Subsidio:
     - Tipo de subsidio:
@@ -900,7 +881,6 @@ def proceso (text,Entrenam,ode_path):
     def buscar_banco(fragmento_texto):
         banco_alzante = "BANCO" in fragmento_texto
         return banco_alzante
-
     fragmento_texto=extract_substring(texto, "OCTAVO:","NOVENO:")
     prompt = """Extrae los datos de un crédito hipotecario en el siguiente formato:  
     -Monto líquido: 
@@ -1029,7 +1009,11 @@ def proceso (text,Entrenam,ode_path):
     ### Extracción de datos
     ##Clausula 27
     clau_27=extract_substring(texto, "VIGESIMO SEPTIMO:","VIGESIMO OCTAVO:")
-    fragmento_texto="En este fragmento se encuentra, nombre, rut y dirección del codeudor:"+clau_final + "\n" +"Y en el texto que viene a continuación se encuentra el estado civil de codeudor:" +"\n"+clau_final_extra	 + "Puede que en este fragmento haya información adicional de la solicitada: " + clau_27
+    try:
+        fragmento_texto="En este fragmento se encuentra, nombre, rut y dirección del codeudor:"+clau_final + "\n" +"Y en el texto que viene a continuación se encuentra el estado civil de codeudor:" +"\n"+clau_final_extra	 + "Puede que en este fragmento haya información adicional de la solicitada: " + clau_27
+    except:
+        clau_27="No se encontró información"
+        fragmento_texto="En este fragmento se encuentra, nombre, rut y dirección del codeudor:"+clau_final + "\n" +"Y en el texto que viene a continuación se encuentra el estado civil de codeudor:" +"\n"+clau_final_extra	 + "Puede que en este fragmento haya información adicional de la solicitada: " + clau_27
     personalidad = "Eres un experto en analizar la información solicitada de un fragmento de texto. Nunca respondes los números con palabras. "
 
     prompt = """Extrae la información de:
@@ -1078,12 +1062,14 @@ def proceso (text,Entrenam,ode_path):
     Mensajes_GOP_preliminar=mensaje("Gastos Operacionales:")
     Mensajes_GOP=Mensajes_GOP_preliminar
     prompt = """Extrae la información de:
-    Gastos Operacionales:
-    - Tasación:
-    - Estudio de Títulos:
-    - Notaría en Santiago:
-    - Redacción de escritura:
-    - Impuesto Mutuo: (se encuentra en literal f) )
+Gastos Operacionales:
+- Tasación:
+- Estudio de Títulos:
+- Notaría en Santiago:
+- Redacción de escritura:
+- Impuesto Mutuo: (se encuentra en literal f) )
+- CBR: (Conservador de bienes raíces)
+
     (Solamente responde con las variables solicitadas sin omitir ninguna y no coloques texto antes ni después de las variables respondidas)
     del siguiente fragmento de texto:"""
     Mensajes_GOP.append({"role": "user", "content": prompt+fragmento_texto})
@@ -1174,7 +1160,7 @@ def proceso (text,Entrenam,ode_path):
         # Mensajes de contexto para el bot
         texto_csv_incorrecto = comparacion
         Mensajes_Banco_alzante = [
-            {"role": "system", "content": "El bot está diseñado para corregir y verificar formatos de texto en CSV. Asegúrese de especificar los detalles del texto y lo que necesita corregir."},
+            {"role": "system", "content": "El bot está diseñado para corregir y verificar formatos de texto en CSV. Asegúrese de especificar los detalles del texto y lo que necesita corregir (además quiero que mantengas la clasificación IGUAL o NO IGUAL. No puedes ocupar otras palabras que no sean esas)."},
             {"role": "user", "content": "Necesito que revises y corrijas este texto para que su formato sea CSV válido, delimitado por ';'"+texto_csv_incorrecto}
         ]
 
